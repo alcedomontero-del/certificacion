@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de administración — Portal de Certificados</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <a href="admin.html" class="brand">
+      <svg class="seal" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="24" cy="20" r="14" fill="#C9A227"/>
+        <path d="M16 30 L13 44 L24 38 L35 44 L32 30" fill="#fff" opacity="0.9"/>
+        <text x="24" y="25" font-size="14" text-anchor="middle" fill="#1B3A5C" font-family="serif">🎓</text>
+      </svg>
+      <span class="brand-text">Panel admin<br /><small>Portal de certificados</small></span>
+    </a>
+    <div class="top-actions">
+      <span style="color:#fff; font-weight:700; font-size:13.5px;" id="admin-email"></span>
+      <button class="btn btn-gold" id="btn-ver-publico">👀 Ver página pública</button>
+      <button class="btn btn-ghost-light" id="btn-logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <div id="badge-modo"></div>
+
+  <main class="admin-wrap">
+    <div class="admin-grid">
+
+      <!-- Columna izquierda: subir certificado + anuncios -->
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <section class="panel">
+          <h2 id="titulo-form">📄 Subir certificado</h2>
+          <p class="panel-sub">Campos con <span class="required-star">*</span> son obligatorios</p>
+
+          <form id="form-certificado">
+            <div class="field">
+              <label for="f-archivo">Archivo PDF <span class="required-star">*</span></label>
+              <div class="file-drop" id="drop-zone">
+                <div class="file-icon">📄</div>
+                <div class="file-text" id="file-text">Toca para elegir el PDF</div>
+              </div>
+              <input type="file" id="f-archivo" accept="application/pdf,.pdf" style="display:none;" />
+            </div>
+
+            <div class="field">
+              <label for="f-cedula">Cédula o ID del estudiante <span class="required-star">*</span></label>
+              <input type="text" id="f-cedula" placeholder="Ej. 001-1234567-8" required inputmode="numeric" />
+              <p class="hint">Puedes escribirla con o sin guiones — se guarda solo con números.</p>
+            </div>
+
+            <div class="field">
+              <label for="f-descripcion">Descripción de la certificación <span class="required-star">*</span></label>
+              <textarea id="f-descripcion" placeholder="Ej. Técnico en Desarrollo Web — 120 horas" required></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px;">
+              <button type="submit" class="btn btn-navy" id="btn-guardar" style="flex:1; justify-content:center;">Subir certificado</button>
+              <button type="button" class="btn btn-outline" id="btn-cancelar-edicion" style="display:none;">Cancelar</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel anuncios-admin">
+          <h2>📢 Anuncios de la página pública</h2>
+          <p class="panel-sub">Si dejas un campo vacío, ese espacio no se muestra a los visitantes</p>
+
+          <div class="field">
+            <label for="an-texto1">Anuncio 1</label>
+            <textarea id="an-texto1" placeholder="Ej. Las inscripciones abren el 1 de septiembre"></textarea>
+          </div>
+          <div class="field">
+            <label for="an-texto2">Anuncio 2</label>
+            <textarea id="an-texto2" placeholder="Ej. Horario especial por vacaciones"></textarea>
+          </div>
+          <button type="button" class="btn btn-gold btn-block" id="btn-guardar-anuncios">Guardar anuncios</button>
+        </section>
+
+      </div>
+
+      <!-- Columna derecha: lista de certificados -->
+      <section class="panel">
+        <h2>📚 Certificados subidos <span style="font-size:14px; color:var(--ink-soft);">(<span id="contador-certs">0</span>)</span></h2>
+        <p class="panel-sub">Todos los certificados de todos los estudiantes</p>
+        <div class="cert-list" id="lista-certs"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="js/env.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/boot.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

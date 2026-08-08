@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal de Certificados</title>
+  <meta name="description" content="Descarga tus certificaciones ingresando tu número de cédula o ID." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <a href="index.html" class="brand">
+      <svg class="seal" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="24" cy="20" r="14" fill="#C9A227"/>
+        <path d="M16 30 L13 44 L24 38 L35 44 L32 30" fill="#fff" opacity="0.9"/>
+        <text x="24" y="25" font-size="14" text-anchor="middle" fill="#1B3A5C" font-family="serif">🎓</text>
+      </svg>
+      <span class="brand-text" id="nombre-escuela">Tu Escuela industrial electrica EIE<br /><small>Portal de certificados</small></span>
+    </a>
+    <div class="top-actions">
+      <a href="login.html" class="btn btn-ghost-light">🔐 Administrador</a>
+    </div>
+  </header>
+
+  <div id="badge-modo"></div>
+
+  <section class="hero">
+    <h1>Descarga tu certificación</h1>
+    <p>Ingresa tu número de cédula o ID para ver y descargar tus certificados.</p>
+    <div class="ribbon-divider"></div>
+  </section>
+
+  <div class="anuncios-wrap">
+    <div class="anuncio-card" id="anuncio-1">
+      <span class="etiqueta">📢 Anuncio</span>
+      <span class="texto"></span>
+    </div>
+    <div class="anuncio-card" id="anuncio-2">
+      <span class="etiqueta">📢 Anuncio</span>
+      <span class="texto"></span>
+    </div>
+  </div>
+
+  <div class="buscador-wrap">
+    <div class="buscador-card">
+      <form id="form-busqueda">
+        <div class="buscador-row">
+          <input type="text" id="input-cedula" placeholder="Ej. 001-1234567-8" inputmode="numeric" autocomplete="off" />
+          <button type="submit" class="btn btn-navy" id="btn-buscar">Buscar</button>
+        </div>
+        <p class="buscador-hint">Puedes escribirla con o sin guiones.</p>
+      </form>
+    </div>
+  </div>
+
+  <main class="resultados-wrap">
+    <div id="resultados"></div>
+  </main>
+
+  <footer class="site-footer">
+    🎓 Portal de Certificados — Consulta disponible las 24 horas
+  </footer>
+
+  <script src="js/env.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/boot.js"></script>
+  <script src="js/buscar.js"></script>
+</body>
+</html>
