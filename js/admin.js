@@ -20,15 +20,39 @@
   const contadorCerts = document.getElementById("contador-certs");
 
   // ---------- Guardia de autenticación ----------
-  window.cuandoDBListo(async () => {
-    const user = window.DB.getCurrentUser();
-    if (!user) {
-      window.location.href = "login.html";
-      return;
-    }
-    document.getElementById("admin-email").textContent = user.email;
-    await cargarCertificados();
-    await cargarAnuncios();
+  //
+  // VERSIÓN VIEJA (causaba el "flash" y el rebote a login.html):
+  //
+  //   window.cuandoDBListo(async () => {
+  //     const user = window.DB.getCurrentUser();   // ← pregunta INMEDIATA
+  //     if (!user) { window.location.href = "login.html"; return; }
+  //     ...
+  //   });
+  //
+  // El problema: getCurrentUser() lee el estado de Firebase Auth TAL
+  // COMO ESTÁ en ese preciso instante — y justo al recargar la página,
+  // Firebase todavía no ha tenido tiempo de "recordar" tu sesión guardada
+  // (lo hace de forma asíncrona, por detrás). En ese primer instante,
+  // SIEMPRE contesta "no hay nadie", aunque sí habías iniciado sesión.
+  //
+  // VERSIÓN NUEVA: usamos onAuthChange, que espera la respuesta real
+  // de Firebase en vez de preguntar de golpe. cancelarEscucha() se
+  // guarda y se llama de una vez para dejar de escuchar después de la
+  // primera respuesta (si no, esta guardia se repetiría cada vez que
+  // el estado de sesión cambiara, por ejemplo al cerrar sesión).
+  window.cuandoDBListo(() => {
+    const cancelarEscucha = window.DB.onAuthChange(async (user) => {
+      cancelarEscucha();
+
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("admin-email").textContent = user.email;
+      await cargarCertificados();
+      await cargarAnuncios();
+    });
   });
 
   document.getElementById("btn-logout").addEventListener("click", async () => {
@@ -209,3 +233,4 @@
     }
   });
 })();
+
