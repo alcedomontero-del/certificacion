@@ -13,8 +13,8 @@
  */
 
 // Nombre de la escuela — cámbialo aquí y se actualiza en toda la página
-window.NOMBRE_ESCUELA = "Tu Escuela o Instituto";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+window.NOMBRE_ESCUELA = "Tu Escuela electrio industrial";
+
 window.FIREBASE_CONFIG = {
   apiKey: "AIzaSyDrTDO98qgkbNXhXg0I8zkDiQuhSnGcJlc",
     authDomain: "certificaniones.firebaseapp.com",
@@ -23,7 +23,7 @@ window.FIREBASE_CONFIG = {
     messagingSenderId: "216617850421",
     appId: "1:216617850421:web:12aac6cebe520bc6c8437c"
 }; 
-const app = initializeApp(firebaseConfig);
+
 
 window.CLOUDINARY_CONFIG = {
   // Lo encuentras en el Dashboard de Cloudinary, arriba a la izquierda
