@@ -56,7 +56,8 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 12px 16px;
   padding: 20px 28px;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
   box-shadow: var(--shadow-soft);
@@ -68,6 +69,7 @@ img { max-width: 100%; display: block; }
   gap: 14px;
   color: #fff;
   text-decoration: none;
+  min-width: 0; /* deja que el texto de la escuela se ajuste en vez de empujar al botón */
 }
 .brand .seal {
   width: 46px;
@@ -254,6 +256,7 @@ img { max-width: 100%; display: block; }
 .buscador-row { display: flex; gap: 10px; }
 .buscador-row input {
   flex: 1;
+  min-width: 0; /* sin esto, el input se niega a encogerse en pantallas angostas */
   padding: 14px 16px;
   border-radius: var(--radius-sm);
   border: 2px solid var(--line);
@@ -261,6 +264,17 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   background: #fff;
   color: var(--ink);
+}
+.buscador-row .btn { flex-shrink: 0; }
+
+@media (max-width: 420px) {
+  .buscador-row {
+    flex-direction: column;
+  }
+  .buscador-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 .buscador-row input:focus { outline: none; border-color: var(--navy); }
 .buscador-hint { font-size: 12.5px; color: var(--ink-soft); margin-top: 8px; font-weight: 600; }
@@ -389,6 +403,7 @@ img { max-width: 100%; display: block; }
 /* ---------- Admin ---------- */
 .admin-wrap { max-width: 1120px; margin: 0 auto; padding: 28px 28px 80px; }
 .admin-grid { display: grid; grid-template-columns: minmax(300px, 380px) 1fr; gap: 26px; align-items: start; }
+.admin-grid > * { min-width: 0; } /* sin esto, el contenido interno evita que la columna se encoja */
 @media (max-width: 880px) { .admin-grid { grid-template-columns: 1fr; } }
 
 .panel {
@@ -456,3 +471,4 @@ img { max-width: 100%; display: block; }
 
 .required-star { color: var(--maroon); }
 .anuncios-admin .field { margin-bottom: 14px; }
+
