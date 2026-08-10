@@ -8,8 +8,7 @@ window.pintarBadgeModo = function (contenedorId) {
     contenedor.innerHTML =
       '<span class="mode-badge local"><span class="dot"></span>🧪 Modo demostración local — nada de esto está en internet</span>';
   } else {
-    contenedor.innerHTML =
-      '<span class="mode-badge live"><span class="dot"></span>🟢 Conectado en vivo (Firebase + Cloudinary)</span>';
+   
   }
 };
 
